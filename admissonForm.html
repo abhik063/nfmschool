@@ -1,0 +1,1524 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kids School a Education School Category Flat Bootstrap Responsive Website Template | News & Events :: w3layouts</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Kids School Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+<script src="js/jquery-1.11.1.min.js"></script>
+<!-- //js -->
+<link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Peralta' rel='stylesheet' type='text/css'>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+
+<!--Function-->
+<script type="text/javascript">
+  function edu__validatePincode(pincode) {
+      var filter = /^\d{6}$/;
+      if (filter.test(pincode)) {
+          return true;
+      } else {
+          return false;
+      }
+  }
+  
+  function edu__validateEmail(emailAddress) {
+      var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      if (filter.test(emailAddress)) {
+          return true;
+      } else {
+          return false;
+      }
+  }
+  function myFunction()
+  {
+    if(edu__validateFormValue())
+    {
+   var validate = true;
+      $(".emailid").each(function() {
+          var value = $(this).val().trim();
+          if (value.length > 0 && !edu__validateEmail(value)) {
+              var title = $(this).prop('title');
+              if (!title || title.length == 0) {
+                  title = $(this).prop('name');
+              }
+              var message = title + " is not valid";
+              $(this).focus();
+              edu__showErrorMessageDiv(message);
+              validate = false;
+              return false;
+          }
+      });
+      $(".pincode").each(function() {
+          var value = $(this).val().trim();
+          if (value.length > 0 && !(edu__validatePincode(value))) {
+              var title = $(this).prop('title');
+              if (!title || title.length == 0) {
+                  title = $(this).prop('name');
+              }
+              var message = title + " should be 6 digits";
+              $(this).focus();
+              edu__showErrorMessageDiv(message);
+              validate = false;
+              return false;
+          }
+      });
+      if (!validate) {
+          edu__enablebuttonbyjq("savebtn")
+          return false;
+      } else {
+          document.getElementById('myform').submit();
+      }
+  
+    }
+    
+  }
+      $(document).ready(function () 
+      {
+          if (!($("#is_sibling").is(':checked')))
+          {
+              hideElementsOnClass("sibling");
+          }
+          $("#is_sibling").change(function ()
+          {
+              if ($("#is_sibling").is(':checked'))
+              {
+                  showElementsOnClass("sibling");
+                  $("#sibling_enrollment").addClass("mandatoryvalue")
+              } else 
+              {
+                  hideElementsOnClass("sibling");
+                  $("#sibling_enrollment").removeClass("mandatoryvalue")
+              }
+          });
+  
+          $('#is_transport').change(function(){
+          if(this.checked)
+              $('#declaration').show();
+          else
+              $('#declaration').hide();
+      });
+      
+          $('#check').change(function(){
+          if(this.checked)
+              $('#declaration1').show();
+          else
+              $('#declaration1').hide();
+      });
+   });
+  </script>
+   <script language="javascript">
+          function hideElementsOnClass(cls) {
+      var elements = document.getElementsByClassName(cls);
+      for (var i in elements) {
+          if (elements[i].style) {
+              elements[i].style.display = "none";
+          }
+      }
+  }
+  function showElementsOnClass(cls) {
+      var elements = document.getElementsByClassName(cls);
+      for (var i in elements) {
+          if (elements[i].style) {
+              elements[i].style.display = "block";
+          }
+      }
+  }
+  function selectvaluecheck(value) {
+      if (value == undefined) {
+          value = "-1";
+      }
+      return value;
+  }
+  function valuecheck(value) {
+      if (value == undefined) {
+          value = "";
+      }
+      return value;
+  }
+  function getsiblingData(obj)
+  {
+  var url = "https://dpshajipur.edunexttechnologies.com/appsibling?enroll="+ obj;
+  $.ajax({
+       url:url,
+       type:'GET',
+       crossdomain : true,
+       datatype : 'jsonp',
+       success:function(data,textStatus,errorThrown){
+          siblingupdatepage(data);
+       },
+       error:function(data,textStatus,errorThrown){
+       }      
+      });
+  }
+  function siblingupdatepage(str) {
+      var json = eval('(' + str + ')');
+      if (json.data == "YES") {
+          var fathername = valuecheck(json.fathername);
+          var mothername = valuecheck(json.mothername);
+          var address = valuecheck(json.address);
+          var city = valuecheck(json.city);
+          var state = valuecheck(json.state);
+          var country = valuecheck(json.country);
+          var pin = valuecheck(json.pin);
+          var religionid = selectvaluecheck(json.religionid);
+          var mothermobileno = valuecheck(json.mothermobileno);
+          var motherofficeaddress = valuecheck(json.motherofficeaddress);
+          var motherprofession = valuecheck(json.motherprofession);
+          var fathermobileno = valuecheck(json.fathermobileno);
+          var fatherofficeaddress = valuecheck(json.fatherofficeaddress);
+          var fatherprofession = valuecheck(json.fatherprofession);
+          var siblingdetail = valuecheck(json.siblingdetail);
+          var motherdesignation = valuecheck(json.motherdesignation);
+          var fatherdesignation = valuecheck(json.fatherdesignation);
+          var siblingName = valuecheck(json.name);
+          var siblingClass = valuecheck(json.class);
+  
+          document.getElementById("sibling_name").value = siblingName;
+          document.getElementById("sibling_class").value = siblingClass;
+          document.getElementById("address").value = address;
+          document.getElementById("state").value = state;
+          document.getElementById("pin").value = pin;
+          document.getElementById("city").value = city;       
+          document.getElementById("fathername").value = valuecheck(fathername);
+          document.getElementById("mothername").value = valuecheck(mothername);       
+          document.getElementById("mothermobileno").value = mothermobileno;
+          document.getElementById("motherofficeaddress").value = motherofficeaddress;
+          document.getElementById("fathermobileno").value = fathermobileno;
+          document.getElementById("fatherofficeaddress").value = fatherofficeaddress;
+          document.getElementById("sibling_profile_id").value = valuecheck(json.id);
+      } else {
+          $("#criteria__Sibling").val("");
+          $("#sibling_enrollment").val("");
+          $("#sibling_enrollment").focus();
+      }
+  }
+  function hideElementsOnClass(cls) {
+      var elements = document.getElementsByClassName(cls);
+      for (var i in elements) {
+          if (elements[i].style) {
+              elements[i].style.display = "none";
+          }
+      }
+  }
+  function showElementsOnClass(cls) {
+      var elements = document.getElementsByClassName(cls);
+      for (var i in elements) {
+          if (elements[i].style) {
+              elements[i].style.display = "block";
+          }
+      }
+  }
+  function onadmissionselectdata() {
+      document.getElementById("enquiryid").value = '';
+      onvalueselect();
+  }
+  function showGuardianDetails(obj)
+  {
+      if(obj.value == 'Yes')
+           document.getElementById('GuardianDetails').style.display = "block";
+      else
+          document.getElementById('GuardianDetails').style.display = "none";
+  }
+  // function spostRequest() {
+  //     var admissionid= document.getElementById("admissionid").value;
+  //     var dateofbirth= document.getElementById("dateofbirth").value;
+  //     if(admissionid!='' && dateofbirth!=''){
+  //         var filter="admissionid="+admissionid+"&dateofbirth="+dateofbirth;
+  //         edu__application_form_validation('brgs.edunexttechnologies.com',filter)
+  //     }
+   
+  // }
+  </script>
+  
+  <script>
+        $( function() {
+          $( ".datepicker" ).datepicker({
+            changeMonth: true,
+            changeYear: true
+          });
+        } );
+  </script>
+  <script>
+        $( function() {
+          $( ".datepicker" ).datepicker({
+            changeMonth: true,
+            changeYear: true
+          });
+        } );
+  </script>
+  
+      
+  <script>
+  /*
+  function application_form_validation_response(response) {
+  
+  if(response=="Successfully"){
+      document.getElementById("savebtn").style.display="inline";
+      document.getElementById("errorage").style.display="none";
+  } else {
+  alert(response);
+  document.getElementById("savebtn").style.display="none";
+  document.getElementById("errorage").style.display="block";
+  }
+  }
+  */
+  </script>
+  <style>
+  input[type=text], select{
+      width: 100%;
+     height: 30px;
+  }
+  textarea {
+  width:100%;
+  }
+  .text_upper {text-transform:uppercase}
+  </style>
+  <style>
+  .blink_me {
+    animation: blinker 1s linear infinite;
+    color: #fff;
+  }
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+  </style>
+<!--//Functions-->
+</head>
+	
+<body>
+<!-- body -->
+	<div class="body-content">
+		<div class="container">
+			<div class="body-content1">
+			<!-- header -->
+				<div class="logo-search">
+					<div class="logo">
+						<h1><a href="index.html">New<span class="color"> Fellowship</span><span class="color1"> Mission</span><span> School</span> <b></b><i>Learning for Life</i></a></h1>
+					</div>					
+					<div class="clearfix"> </div>
+        </div>
+        <br>
+			<!-- //header -->
+			<div class="justify"> 
+        <style>
+					.button1 {
+					  background-color: #1c87c9;
+					  -webkit-border-radius: 8px;
+					  border-radius: 10px;
+					  border: none;
+					  color: #eeeeee;
+					  cursor: pointer;
+					  display: inline-block;
+					  font-family: sans-serif;
+					  font-size: 20px;					  
+					  text-align: center;
+					  text-decoration: none;
+					  white-space: normal;
+					  
+					
+					}
+					.button2 {
+						background-color: #1c87c9;
+					  -webkit-border-radius: 8px;
+					  border-radius: 10px;
+					  border: none;
+					  color: #eeeeee;
+					  cursor: pointer;
+					  display: inline-block;
+					  font-family: sans-serif;
+					  font-size: 20px;					  
+					  text-align: center;
+					  text-decoration: none;
+					  white-space: normal;
+					
+					}
+					
+					
+					@keyframes glowingGreen {
+					  0% {
+						background-color: #2ba805;
+						box-shadow: 0 0 5px #2ba805;
+					  }
+					  50% {
+						background-color: #49e819;
+						box-shadow: 0 0 20px #49e819;
+					  }
+					  100% {
+						background-color: #2ba805;
+						box-shadow: 0 0 5px #2ba805;
+					  }
+					}
+					.button1 {
+					  animation: glowingGreen 1300ms infinite;
+					}
+					@keyframes glowingRed {
+					  0% {
+						background-color: #9c4444;
+						box-shadow: 0 0 5px #9c4444;
+					  }
+					  50% {
+						background-color: #f50303;
+						box-shadow: 0 0 20px #f50303;
+					  }
+					  100% {
+						background-color: #9c4444;
+						box-shadow: 0 0 5px #9c4444;
+					  }
+					}
+					.button2 {
+					  animation: glowingRed 1300ms infinite;
+					}
+				</style>
+				
+				<style> 
+					#main {
+					  width: 400px;
+					  height: 70px;
+					  
+					  display: flex;
+					  justify-content: center;
+					  
+					}
+					
+					#main div {
+					  width: 70px;
+					  height: 70px;
+					}
+					</style>
+					<br>
+							<div id="main"> 
+								<a href="admissonForm.html"  target="_blank" class="btn btn-sm btn-primary button2">Apply Online</a>					
+								<a href="tel:+91-8319740907"  target="_blank" class="btn btn-sm btn-primary button1">Call Us</a>					
+								<a href="mailto:info@nfmschool.in" target="_blank" class="btn btn-primary button2">Email Us</a>
+							</div> 
+							
+			</div>
+			<!-- nav -->
+				<div class="navigation">
+					<nav class="navbar navbar-default">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+						  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+              </button>
+            	</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+							<nav class="stroke">
+								<ul class="nav navbar-nav">
+									<li><a href="index.html" class="hvr-rectangle-out">Home</a></li>
+									<li><a href="services.html" class="hvr-rectangle-out">Services</a></li>
+									<li><a href="events.html">Events</a></li>
+									<li><a href="academics.html" class="hvr-rectangle-out">Academics</a></li>
+                  <li><a href="gallery.html" class="hvr-rectangle-out">Gallery</a></li>
+                  <li><a href="https://forms.gle/4wVPCxy3pzKkKKXB7" class="hvr-rectangle-out">Apply</a></li>
+									
+								</ul>
+							</nav>
+						</div>
+						<!-- /.navbar-collapse -->
+					</nav>
+				</div>
+            <!-- //nav -->
+          <!--Form-->
+          <div class="animated zoomIn"> 
+            <h4 style="background-color:#6d7482;color:#fff; padding:10px 0px 10px 5px">Sibling Details</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">Sibling (Real Brother/ Sister) Information &nbsp; &nbsp; <input type="checkbox" title="Sibling" id="is_sibling" name="is_sibling"></div>
+                       </div>
+                      </div>
+                    <div>&nbsp;</div>       
+                  <div class="row sibling" style="display: none;">
+                    <div class="col-md-6">
+                        <div class="col-md-6">
+                            Admission No.</div>
+                        <div class="col-md-6">
+                        <input type="text" title="Admission No" class="form-control columnlabel sibling" id="sibling_enrollment" name="sibling_enrollment" value="" onchange="getsiblingData(this.value)" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-6">Sibling Name</div>
+                        <div class="col-md-6">
+                        <input type="text" readonly="readonly" title="Sibling Name" id="sibling_name" name="sibling_name" value="" class="form-control textbox text_upper">
+                        </div>
+                    </div>
+                    <div>&nbsp;</div>
+                <!--
+                </div>
+                <div>&nbsp;</div>
+                <div class="row">
+                -->
+                    <div class="col-md-6">
+                        <div class="col-md-6">Sibling Class</div>
+                        <div class="col-md-6">
+                        <input type="text" title="Sibling Class" readonly="readonly" id="sibling_class" name="sibling_class" value="" class="form-control textbox text_upper">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+                    <div>&nbsp;</div>
+                    <h4 style="background-color:#6d7482; color:#fff; padding:10px 0px 10px 5px">Student Details</h4>
+                <div>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">
+                             Student First Name<font color="#FF0000">*</font></div>
+                        <div class="col-md-6"><input type="text" name="firstname" id="firstname" class="form-control text_upper mandatoryvalue" title="Student Name"></div>
+                    </div>
+                        <div class="col-md-6">
+                            <div class="col-md-6">Student Middle Name</div>
+                            <div class="col-md-6"><input type="text" name="middle_name" id="middle_name" title="Middle Name" class="form-control text_upper"></div>
+                        </div>
+                        <div>&nbsp;</div>   
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">
+                            Student Last Name</div>
+                        <div class="col-md-6"><input type="text" name="lastname" id="lastname" class="form-control text_upper" title="Last Name"></div>
+                    </div>
+                    <div class="col-md-6">
+                            <div class="col-md-6">Gender<font color="#FF0000">*</font></div>
+                            <div class="col-md-6">
+                            <select name="genderid" id="genderid" title="Gender" class="form-control mandatoryvalue">
+                                <option value="-1">--Select Gender--</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                                <option value="3">Transgender</option>
+                            </select>
+                            </div>
+                    </div>
+                    <div>&nbsp;</div>   
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">
+                            Date of Birth<font color="#FF0000">*</font></div>
+                        <div class="col-md-6">
+                        <input readonly="readonly" type="text" title="Date of Birth" id="dateofbirth" name="dateofbirth" value="" class="mandatoryvalue datepicker date form-control hasDatepicker">      
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-6">
+                            Admission sought in class<font color="#FF0000">*</font></div>
+                        <div class="col-md-6">
+                        <select class="form-control mandatoryvalue" id="admissionid" title="Class" name="admissionid">
+                            <option value="-1">--Select Class--</option>
+                  <option value="7">KG (2020-21)
+                  </option>
+                  
+                  <option value="1">Nur 2020-21
+                  </option>
+                  
+                  <option value="2">I (2020-21)
+                  </option>
+                  
+                  <option value="3">II (2020-21)
+                  </option>
+                  
+                  <option value="4">III (2020-21)
+                  </option>
+                  
+                  <option value="5">IV (2020-21)
+                  </option>
+                  
+                  <option value="6">V (2020-21)
+                  </option>
+                         </select>
+                    </div>
+                    </div>
+                    <div>&nbsp;</div>
+                    </div>
+                    <div class="row">           
+                    <div class="col-md-6">
+                        <div class="col-md-6">Category</div>
+                        <div class="col-md-6">
+                            <select name="categoryid" id="categoryid" title="Category" class="form-control">
+                                <option value="-1">--Select Category--</option>
+                                <option value="2">EWS</option>
+                                <option value="1">GENERAL</option>
+                                <option value="4">OBC</option>
+                                <option value="5">SC</option>
+                                <option value="6">ST</option>
+                                <option value="3">STAFF</option>                    
+                            </select>                       
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-6">Religion</div>
+                        <div class="col-md-6">
+                            <select name="religionid" id="religionid" title="Religion" class="form-control">
+                                <option value="-1">--Select Religion--</option>
+                                <option value="5">Buddhist</option>
+                                <option value="4">Christian</option>
+                                <option value="1">Hindu</option>
+                                <option value="6">Jainism</option>
+                                <option value="2">Muslim</option>
+                                <option value="7">Others</option>
+                                <option value="3">Sikh</option>
+                            </select>               
+                        </div>
+                    </div>  
+                    <div>&nbsp;</div>
+                </div>          
+        
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">Nationality </div>
+                        <div class="col-md-6">
+                            <select name="nationality" id="nationality" title="Nationality" class="form-control">
+                                <option value="-1">--Select Nationality--</option>
+                                <option value="AFGHAN">AFGHAN
+                                </option>
+                                
+                                <option value="ALBANIAN">ALBANIAN
+                                </option>
+                                
+                                <option value="ALGERIAN">ALGERIAN
+                                </option>
+                                
+                                <option value="ANDORRAN">ANDORRAN
+                                </option>
+                                
+                                <option value="ANGOLAN">ANGOLAN
+                                </option>
+                                
+                                <option value="ARGENTINIAN">ARGENTINIAN
+                                </option>
+                                
+                                <option value="ARMENIAN">ARMENIAN
+                                </option>
+                                
+                                <option value="AUSTRALIAN">AUSTRALIAN
+                                </option>
+                                
+                                <option value="AUSTRIAN">AUSTRIAN
+                                </option>
+                                
+                                <option value="AZERBAIJANI">AZERBAIJANI
+                                </option>
+                                
+                                <option value="BAHAMIAN">BAHAMIAN
+                                </option>
+                                
+                                <option value="BAHRAINI">BAHRAINI
+                                </option>
+                                
+                                <option value="BANGLADESHI">BANGLADESHI
+                                </option>
+                                
+                                <option value="BARBADIAN">BARBADIAN
+                                </option>
+                                
+                                <option value="BELARUSIAN">BELARUSIAN
+                                </option>
+                                
+                                <option value="BELGIAN">BELGIAN
+                                </option>
+                                
+                                <option value="BELIZEAN">BELIZEAN
+                                </option>
+                                
+                                <option value="BENINESE">BENINESE
+                                </option>
+                                
+                                <option value="BHUTANESE">BHUTANESE
+                                </option>
+                                
+                                <option value="BOLIVIAN">BOLIVIAN
+                                </option>
+                                
+                                <option value="BOSNIAN">BOSNIAN
+                                </option>
+                                
+                                <option value="BOTSWANAN">BOTSWANAN
+                                </option>
+                                
+                                <option value="BRAZILIAN">BRAZILIAN
+                                </option>
+                                
+                                <option value="BRITISH">BRITISH
+                                </option>
+                                
+                                <option value="BRUNEIAN">BRUNEIAN
+                                </option>
+                                
+                                <option value="BULGARIAN">BULGARIAN
+                                </option>
+                                
+                                <option value="BURKINESE">BURKINESE
+                                </option>
+                                
+                                <option value="BURMESE">BURMESE
+                                </option>
+                                
+                                <option value="BURUNDIAN">BURUNDIAN
+                                </option>
+                                
+                                <option value="CAMBODIAN">CAMBODIAN
+                                </option>
+                                
+                                <option value="CAMEROONIAN">CAMEROONIAN
+                                </option>
+                                
+                                <option value="CANADIAN">CANADIAN
+                                </option>
+                                
+                                <option value="CAPEVERDEAN">CAPEVERDEAN
+                                </option>
+                                
+                                <option value="CHADIAN">CHADIAN
+                                </option>
+                                
+                                <option value="CHILEAN">CHILEAN
+                                </option>
+                                
+                                <option value="CHINESE">CHINESE
+                                </option>
+                                
+                                <option value="COLOMBIAN">COLOMBIAN
+                                </option>
+                                
+                                <option value="CONGOLESE">CONGOLESE
+                                </option>
+                                
+                                <option value="COSTARICAN">COSTARICAN
+                                </option>
+                                
+                                <option value="CROATIAN">CROATIAN
+                                </option>
+                                
+                                <option value="CUBAN">CUBAN
+                                </option>
+                                
+                                <option value="CYPRIOT">CYPRIOT
+                                </option>
+                                
+                                <option value="CZECH">CZECH
+                                </option>
+                                
+                                <option value="DANISH">DANISH
+                                </option>
+                                
+                                <option value="DJIBOUTIAN">DJIBOUTIAN
+                                </option>
+                                
+                                <option value="DOMINICAN">DOMINICAN
+                                </option>
+                                
+                                <option value="DOMINICAN">DOMINICAN
+                                </option>
+                                
+                                <option value="ECUADOREAN">ECUADOREAN
+                                </option>
+                                
+                                <option value="EGYPTIAN">EGYPTIAN
+                                </option>
+                                
+                                <option value="SALVADOREAN">SALVADOREAN
+                                </option>
+                                
+                                <option value="ENGLISH">ENGLISH
+                                </option>
+                                
+                                <option value="ERITREAN">ERITREAN
+                                </option>
+                                
+                                <option value="ESTONIAN">ESTONIAN
+                                </option>
+                                
+                                <option value="ETHIOPIAN">ETHIOPIAN
+                                </option>
+                                
+                                <option value="FIJIAN">FIJIAN
+                                </option>
+                                
+                                <option value="FINNISH">FINNISH
+                                </option>
+                                
+                                <option value="FRENCH">FRENCH
+                                </option>
+                                
+                                <option value="GABONESE">GABONESE
+                                </option>
+                                
+                                <option value="GAMBIAN">GAMBIAN
+                                </option>
+                                
+                                <option value="GEORGIAN">GEORGIAN
+                                </option>
+                                
+                                <option value="GERMAN">GERMAN
+                                </option>
+                                
+                                <option value="GHANAIAN">GHANAIAN
+                                </option>
+                                
+                                <option value="GREEK">GREEK
+                                </option>
+                                
+                                <option value="GRENADIAN">GRENADIAN
+                                </option>
+                                
+                                <option value="GUATEMALAN">GUATEMALAN
+                                </option>
+                                
+                                <option value="GUINEAN">GUINEAN
+                                </option>
+                                
+                                <option value="GUYANESE">GUYANESE
+                                </option>
+                                
+                                <option value="HAITIAN">HAITIAN
+                                </option>
+                                
+                                <option value="HONDURAN">HONDURAN
+                                </option>
+                                
+                                <option value="HUNGARIAN">HUNGARIAN
+                                </option>
+                                
+                                <option value="ICELANDIC">ICELANDIC
+                                </option>
+                                
+                                <option value="INDIAN">INDIAN
+                                </option>
+                                
+                                <option value="INDONESIAN">INDONESIAN
+                                </option>
+                                
+                                <option value="IRANIAN">IRANIAN
+                                </option>
+                                
+                                <option value="IRAQI">IRAQI
+                                </option>
+                                
+                                <option value="IRISH">IRISH
+                                </option>
+                                
+                                <option value="ITALIAN">ITALIAN
+                                </option>
+                                
+                                <option value="JAMAICAN">JAMAICAN
+                                </option>
+                                
+                                <option value="JAPANESE">JAPANESE
+                                </option>
+                                
+                                <option value="JORDANIAN">JORDANIAN
+                                </option>
+                                
+                                <option value="KAZAKH">KAZAKH
+                                </option>
+                                
+                                <option value="KENYAN">KENYAN
+                                </option>
+                                
+                                <option value="KUWAITI">KUWAITI
+                                </option>
+                                
+                                <option value="LAOTIAN">LAOTIAN
+                                </option>
+                                
+                                <option value="LATVIAN">LATVIAN
+                                </option>
+                                
+                                <option value="LEBANESE">LEBANESE
+                                </option>
+                                
+                                <option value="LIBERIAN">LIBERIAN
+                                </option>
+                                
+                                <option value="LIBYAN">LIBYAN
+                                </option>
+                                
+                                <option value="LITHUANIAN">LITHUANIAN
+                                </option>
+                                
+                                <option value="MACEDONIAN">MACEDONIAN
+                                </option>
+                                
+                                <option value="MADAGASCAN">MADAGASCAN
+                                </option>
+                                
+                                <option value="MALAWIAN">MALAWIAN
+                                </option>
+                                
+                                <option value="MALAYSIAN">MALAYSIAN
+                                </option>
+                                
+                                <option value="MALDIVIAN">MALDIVIAN
+                                </option>
+                                
+                                <option value="MALIAN">MALIAN
+                                </option>
+                                
+                                <option value="MALTESE">MALTESE
+                                </option>
+                                
+                                <option value="MAURITANIAN">MAURITANIAN
+                                </option>
+                                
+                                <option value="MAURITIAN">MAURITIAN
+                                </option>
+                                
+                                <option value="MEXICAN">MEXICAN
+                                </option>
+                                
+                                <option value="MOLDOVAN">MOLDOVAN
+                                </option>
+                                
+                                <option value="MONACAN">MONACAN
+                                </option>
+                                
+                                <option value="MONGOLIAN">MONGOLIAN
+                                </option>
+                                
+                                <option value="MONTENEGRIN">MONTENEGRIN
+                                </option>
+                                
+                                <option value="MOROCCAN">MOROCCAN
+                                </option>
+                                
+                                <option value="MOZAMBICAN">MOZAMBICAN
+                                </option>
+                                
+                                <option value="NAMIBIAN">NAMIBIAN
+                                </option>
+                                
+                                <option value="NEPALESE">NEPALESE
+                                </option>
+                                
+                                <option value="DUTCH">DUTCH
+                                </option>
+                                
+                                <option value="NEWZEALAND">NEWZEALAND
+                                </option>
+                                
+                                <option value="NICARAGUAN">NICARAGUAN
+                                </option>
+                                
+                                <option value="NIGERIEN">NIGERIEN
+                                </option>
+                                
+                                <option value="NIGERIAN">NIGERIAN
+                                </option>
+                                
+                                <option value="NORTHKOREAN">NORTHKOREAN
+                                </option>
+                                
+                                <option value="NORWEGIAN">NORWEGIAN
+                                </option>
+                                
+                                <option value="OMANI">OMANI
+                                </option>
+                                
+                                <option value="PAKISTANI">PAKISTANI
+                                </option>
+                                
+                                <option value="PANAMANIAN">PANAMANIAN
+                                </option>
+                                
+                                <option value="GUINEAN">GUINEAN
+                                </option>
+                                
+                                <option value="PARAGUAYAN">PARAGUAYAN
+                                </option>
+                                
+                                <option value="PERUVIAN">PERUVIAN
+                                </option>
+                                
+                                <option value="PHILIPPINE">PHILIPPINE
+                                </option>
+                                
+                                <option value="POLISH">POLISH
+                                </option>
+                                
+                                <option value="PORTUGUESE">PORTUGUESE
+                                </option>
+                                
+                                <option value="QATARI">QATARI
+                                </option>
+                                
+                                <option value="ROMANIAN">ROMANIAN
+                                </option>
+                                
+                                <option value="RUSSIAN">RUSSIAN
+                                </option>
+                                
+                                <option value="RWANDAN">RWANDAN
+                                </option>
+                                
+                                <option value="SAUDIARABIAN">SAUDIARABIAN
+                                </option>
+                                
+                                <option value="SCOTTISH">SCOTTISH
+                                </option>
+                                
+                                <option value="SENEGALESE">SENEGALESE
+                                </option>
+                                
+                                <option value="SERBIAN">SERBIAN
+                                </option>
+                                
+                                <option value="SEYCHELLOIS">SEYCHELLOIS
+                                </option>
+                                
+                                <option value="SIERRALEONIAN">SIERRALEONIAN
+                                </option>
+                                
+                                <option value="SINGAPOREAN">SINGAPOREAN
+                                </option>
+                                
+                                <option value="SLOVAK">SLOVAK
+                                </option>
+                                
+                                <option value="SLOVENIAN">SLOVENIAN
+                                </option>
+                                
+                                <option value="SOMALI">SOMALI
+                                </option>
+                                
+                                <option value="SOUTHAFRICAN">SOUTHAFRICAN
+                                </option>
+                                
+                                <option value="SOUTHKOREAN">SOUTHKOREAN
+                                </option>
+                                
+                                <option value="SPANISH">SPANISH
+                                </option>
+                                
+                                <option value="SRILANKAN">SRILANKAN
+                                </option>
+                                
+                                <option value="SUDANESE">SUDANESE
+                                </option>
+                                
+                                <option value="SURINAMESE">SURINAMESE
+                                </option>
+                                
+                                <option value="SWAZI">SWAZI
+                                </option>
+                                
+                                <option value="SWEDISH">SWEDISH
+                                </option>
+                                
+                                <option value="SWISS">SWISS
+                                </option>
+                                
+                                <option value="SYRIAN">SYRIAN
+                                </option>
+                                
+                                <option value="TAIWANESE">TAIWANESE
+                                </option>
+                                
+                                <option value="TAJIK">TAJIK
+                                </option>
+                                
+                                <option value="TANZANIAN">TANZANIAN
+                                </option>
+                                
+                                <option value="THAI">THAI
+                                </option>
+                                
+                                <option value="TOGOLESE">TOGOLESE
+                                </option>
+                                
+                                <option value="TRINIDADIAN">TRINIDADIAN
+                                </option>
+                                
+                                <option value="TOBAGONIAN">TOBAGONIAN
+                                </option>
+                                
+                                <option value="TUNISIAN">TUNISIAN
+                                </option>
+                                
+                                <option value="TURKISH">TURKISH
+                                </option>
+                                
+                                <option value="TURKOMAN">TURKOMAN
+                                </option>
+                                
+                                <option value="TUVALUAN">TUVALUAN
+                                </option>
+                                
+                                <option value="UGANDAN">UGANDAN
+                                </option>
+                                
+                                <option value="UKRAINIAN">UKRAINIAN
+                                </option>
+                                
+                                <option value="EMIRATES">EMIRATES
+                                </option>
+                                
+                                <option value="UK">UK
+                                </option>
+                                
+                                <option value="US">US
+                                </option>
+                                
+                                <option value="URUGUAYAN">URUGUAYAN
+                                </option>
+                                
+                                <option value="UZBEK">UZBEK
+                                </option>
+                                
+                                <option value="VANUATUAN">VANUATUAN
+                                </option>
+                                
+                                <option value="VENEZUELAN">VENEZUELAN
+                                </option>
+                                
+                                <option value="VIETNAMESE">VIETNAMESE
+                                </option>
+                                
+                                <option value="WELSH">WELSH
+                                </option>
+                                
+                                <option value="WESTERNSAMOAN">WESTERNSAMOAN
+                                </option>
+                                
+                                <option value="YEMENI">YEMENI
+                                </option>
+                                
+                                <option value="YUGOSLAV">YUGOSLAV
+                                </option>
+                                
+                                <option value="ZAIREAN">ZAIREAN
+                                </option>
+                                
+                                <option value="ZAMBIAN">ZAMBIAN
+                                </option>
+                                
+                                <option value="ZIMBABWEAN">ZIMBABWEAN
+                                </option>
+                                
+                                <option value="AMERICAN">AMERICAN
+                                </option>
+                                
+                                <option value="U.S.A.">U.S.A.
+                                </option>
+        
+                            </select>               
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                            <div class="col-md-6"> Blood Group</div>
+                            <div class="col-md-6">
+                                <select name="bloodgroupid" id="bloodgroupid" class="form-control">
+                                    <option value="-1">--Select Blood Group--</option>
+                                    <option value="1">O-</option>
+                                    <option value="2">O+</option>
+                                    <option value="3">A+</option>
+                                    <option value="4">A-</option>
+                                    <option value="5">B-</option>
+                                    <option value="6">B+</option>
+                                    <option value="7">AB-</option>
+                                    <option value="8">AB+</option>
+                                </select>
+                            </div>
+                    </div>
+                    <div>&nbsp;</div>   
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6"> Email</div>
+                        <div class="col-md-6">
+                            <input style="width:100%" type="email" name="emailid" id="emailid" title="Student Email Id" class="emailid form-control">
+                        </div>
+                    </div>      
+                    <div class="col-md-6">
+                        <div class="col-md-6"> Mobile No.<font color="#FF0000">*</font></div>
+                        <div class="col-md-6">
+                            <input type="text" title="Mobile No." id="mobileno" name="mobileno" value="" maxlength="10" class="numbervalue mandatoryvalue mobileno form-control">
+                        </div>
+                    </div>  
+                    <div>&nbsp;</div>   
+                    </div>                  
+                               
+                     <div class="row">
+                         
+                             
+                     <div class="col-md-6">
+                            <div class="col-md-6"> Student's Photo (Max-2 MB)</div>
+                            <div class="col-md-6">
+                                <input type="file" title="Student's Photo" id="candidate_photo" name="candidate_photo" ext="jpg,jpeg,png" value="" class="fileext">
+                            </div>
+                    </div> 
+                      <div>&nbsp;</div>   
+                     </div>
+        
+                    <h4 style="background-color:#6d7482; color:#fff; padding:10px 0px 10px 5px">Residential Address</h4>  
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-6">Address<font color="#FF0000">*</font></div>
+                            <div class="col-md-6">
+                                <textarea class="mandatoryvalue text_upper form-control" name="address" id="address" title="Address" rows="3"></textarea>
+                        <div>&nbsp;</div>
+                                </div>
+                        </div>
+                        <div class="col-md-6">
+                                <div class="col-md-6">City<font color="#FF0000">*</font></div>
+                                <div class="col-md-6">
+                                    <input id="city" name="city" class="textbox text_upper mandatoryvalue form-control" type="text" title="City">
+                                </div>
+                        </div>
+                        <div>&nbsp;</div>   
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-6">State<font color="#FF0000">*</font></div>
+                            <div class="col-md-6">
+                                <input id="state" name="state" class="textbox text_upper mandatoryvalue form-control" type="text" title="State">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                                <div class="col-md-6">Pin Code<font color="#FF0000">*</font></div>
+                                <div class="col-md-6">
+                                    <input id="pin" name="pin" maxlength="6" class="pincode textbox mandatoryvalue numbervalue form-control" type="text" title="Pin Code">
+                                </div>
+                        </div>
+                        <div>&nbsp;</div>   
+                    </div>
+            <h4 style="background-color:#6d7482;color:#fff; padding:10px 0px 10px 5px">Communication Address</h4> 
+        
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">Address</div>
+                        <div class="col-md-6">
+                            <textarea name="address_correspondence" class="text form-control text_upper" id="address_correspondence" title="Address" rows="3"></textarea>
+                        <div>&nbsp;</div>
+                        </div>              
+                    </div>
+                    <div class="col-md-6">
+                            <div class="col-md-6">Country</div>
+                            <div class="col-md-6">
+                                <input type="text" name="country_correspondence" id="country_correspondence" title="Country" class="text_upper form-control">
+                            </div>
+                    </div>
+                    <div>&nbsp;</div>   
+                    </div>
+        
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">City</div>
+                        <div class="col-md-6">
+                            <input class="form-control text_upper" type="text" name="city_correspondence" id="city_correspondence" title="City">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                            <div class="col-md-6">State</div>
+                            <div class="col-md-6">
+                                <input type="text" name="state_correspondence" id="state_correspondence" title="text" class="form-control text_upper">
+                            </div>
+                    </div>
+                    <div>&nbsp;</div>   
+                    </div>
+        
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">Pin Code</div>
+                        <div class="col-md-6">
+                            <input type="text" maxlength="6" class="numbervalue form-control" name="pin_correspondence" id="pin_correspondence" title="Pin Code">
+                        </div>
+                    </div>
+                    <div>&nbsp;</div>   
+                    </div>          
+                    <div>&nbsp;</div>
+                    
+            <h4 style="background-color:#6d7482;color:#fff; padding:10px 0px 10px 5px">Father's Details</h4>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">Father Name<font color="#FF0000">*</font></div>
+                        <div class="col-md-6">
+                            <input type="text" name="fathername" class="form-control mandatoryvalue text_upper" id="fathername" title="Father Name">    
+                        </div>              
+                    </div>
+                    <div class="col-md-6">
+                            <div class="col-md-6">Qualification</div>
+                            <div class="col-md-6">
+                            <select name="father_qualificationid" id="father_qualificationid" class="form-control">
+                                <option value="-1">--Select Qualification--</option>
+                                <option value="1">High School/10th</option>
+                                <option value="2">Inter/+2</option>
+                                <option value="3">Graduation</option>    
+                                <option value="4">Post Graduation</option>
+                            </select>
+                            </div>
+                    </div>          
+                
+                    <div>&nbsp;</div>   
+                    </div>  
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">Occupation</div>
+                        <div class="col-md-6">
+                            <select name="father_professionid" id="father_professionid" title="Father Occupation" class="form-control">
+                                <option value="-1">--Select Occupation--</option>
+                                <option value="1">Business</option>
+                                <option value="2">Service</option>
+                                <option value="3">Others</option>                     
+                            </select>
+                        </div>
+                    </div>
+            
+                    <div class="col-md-6">
+                        <div class="col-md-6">Organization</div>
+                        <div class="col-md-6">
+                            <input type="text" name="father_organization" class="form-control text_upper" id="father_organization" title="Father Organization">
+                        </div>              
+                    </div>  
+                    </div>
+                    <div>&nbsp;</div>           
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">Designation</div>
+                        <div class="col-md-6">
+                            <input type="text" name="fatherdesignation" id="fatherdesignation" title="Father Designation" class="form-control text_upper">
+                        </div>              
+                    </div>  
+                    <div class="col-md-6">
+                        <div class="col-md-6">Annual Income</div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control textbox text_upper" name="fatherannualincome" id="fatherannualincome" title="Father Annual Income">
+                        </div>
+                    </div>  
+                    <div>&nbsp;</div>   
+                    </div>          
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">Phone(Off.)</div>
+                        <div class="col-md-6">
+                            <input type="text" name="father_office_phone" id="father_office_phone" title="Father Phone(Off.)" class="form-control">
+                        </div>              
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-6">Address(Off.)</div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control textbox text_upper" name="fatherofficeaddress" id="fatherofficeaddress" title="Father Address(Off.)">
+                        </div>              
+                    </div>
+                    <div>&nbsp;</div>   
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">E-mail</div>
+                        <div class="col-md-6">
+                            <input style="width:100%" type="email" name="father_emailid" id="father_emailid" class="form-control emailid" title="Father Email id">
+                        </div>              
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-6">Mobile No.<font color="#FF0000">*</font></div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control mandatoryvalue numbervalue" value="" maxlength="10" name="fathermobileno" id="fathermobileno" title="Father Mobile No.">
+                        </div>              
+                    </div>
+                    <div>&nbsp;</div>   
+                    </div>  
+                                
+                    <div class="row">       
+                    <div class="col-md-6">
+                        <div class="col-md-6">Father's Photo (Max-2 MB)</div>
+                        <div class="col-md-6">
+                            <input type="file" id="father_photo" name="father_photo" ext="jpg,jpeg,png" value="" title="father Photo" class="fileext">
+                        </div>          
+                    </div>
+                    <div>&nbsp;</div>   
+                    </div>
+                    <div>&nbsp;</div>               
+                    <h4 style="background-color:#6d7482;color:#fff; padding:10px 0px 10px 5px">Mother's Details</h4>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">Mother Name<font color="#FF0000">*</font></div>
+                        <div class="col-md-6">
+                            <input type="text" name="mothername" class="form-control mandatoryvalue text_upper" id="mothername" title="Mother Name">
+                        </div>              
+                    </div>
+                    <div class="col-md-6">
+                            <div class="col-md-6">Qualification</div>
+                            <div class="col-md-6">
+                            <select name="mother_qualificationid" id="mother_qualificationid" class="form-control">
+                                <option value="-1">--Select Qualification--</option>
+                                <option value="1">High School/10th</option>  
+                                <option value="2">Inter/+2</option>  
+                                <option value="3">Graduation</option>    
+                                <option value="4">Post Graduation</option>
+                            </select>
+                            </div>
+                    </div>          
+        
+                    <div>&nbsp;</div>   
+                    </div>  
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">Occupation</div>
+                        <div class="col-md-6">
+                        <select name="mother_professionid" id="mother_professionid" class="form-control" title="Mother Occupation">
+                            <option value="-1">--Select Occupation--</option> 
+                            <option value="1">Business</option>
+                            <option value="2">Service</option>
+                            <option value="5">Housewife</option>
+                            <option value="3">Others</option>                     
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-6">Organization</div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control text_upper" name="mother_organization" id="mother_organization" title="Mother Organization">
+                        </div>              
+                    </div>
+        </div>          
+                    <div>&nbsp;</div>   
+        
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">Designation</div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control text_upper" name="motherdesignation" id="motherdesignation" title="Mother Designation">
+                        </div>              
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-6">Annual Income</div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control textbox text_upper" name="motherannualincome" id="motherannualincome" title="Mother Annual Income">
+                        </div>
+                    </div>
+                    <div>&nbsp;</div>   
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">Phone(Off.)</div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control textbox text_upper" name="mother_office_phone" id="mother_office_phone" title="Mother Phone(Off.)">
+                        </div>              
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-6">Address(Off.)</div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control textbox text_upper" name="motherofficeaddress" id="motherofficeaddress" title="Mother Address(Off.)">
+                        </div>              
+                    </div>
+                    <div>&nbsp;</div>   
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">E-mail</div>
+                        <div class="col-md-6">
+                            <input style="width:100%" type="email" name="mother_emailid" id="mother_emailid" class="form-control emailid" title="Mother Email id">
+                        </div>              
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-6">Mobile No.<font color="#FF0000">*</font></div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control mandatoryvalue numbervalue" value="" maxlength="10" name="mothermobileno" id="mothermobileno" title="Mother Mobile No.">
+                        </div>              
+                    </div>
+                    <div>&nbsp;</div>   
+                    </div>              
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">Mother's Photo (Max-2 MB)</div>
+                        <div class="col-md-6">
+                            <input type="file" id="mother_photo" name="mother_photo" ext="jpg,jpeg,png" value="" title="mother Photo" class="fileext">
+                        </div>          
+                    </div>
+                    <div>&nbsp;</div>   
+                    </div>
+                        <div>&nbsp;</div>
+                        <div>&nbsp;</div>               
+                    <div class="row">      
+                    <div class="col-md-12" style="text-align:center;">
+                    <input type="checkbox" id="check"> I Agree 
+                    </div>
+                    <div>&nbsp;</div>           
+                    <div>&nbsp;</div>
+                    <div class="col-md-12" id="declaration1" style="display:none;">
+                    <div class="text-center">
+                        <input type="button" id="savebtn" onclick="return myFunction();" value="Submit" style="background-color: #0c754b;color:#fff; padding:10px 20px; border:none; font-size:16px; cursor:pointer">
+                    </div>
+                    
+                    </div>
+                    <div>&nbsp;</div>           
+                    <div>&nbsp;</div>           
+                    </div><!--Student Details -->
+                     
+                </div>  
+        </div>
+          <!--Footer-->
+              <div class="footer">
+                <div class="container">
+                    <div class="footer-grids">
+                        <div class="col-md-3 footer-grid">
+                            <p>Address:Road Name:<p>Phool Mati Mata Rd,
+                                Village: Tighara, Semaria, Dist. Rewa, Madhya Pradesh 486445, India
+                            <a href="mailto:info@enfmschool.in">info@nfmschool.in</a>
+                            <p>Tel:+91-8319740907</p>
+                        </div>
+                        <div class="col-md-3 footer-grid">
+                            <ul>						
+                                <li><a href="gallery.html">Gallery</a></li>
+                                <li><a href="academics.html">Academics</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 footer-grid">
+                            <ul>
+                                <li><a href="events.html">News & Events</a></li>						
+                                <li><a href="index.html">Home</a></li>
+                            </ul>
+                        </div>				
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="footer-copy">
+                        <p>All rights reserved | New Fellowship Mission School
+                        <ul>
+                            <li><a href="#" class="twitter"><span type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Follow Us On Twitter"></span></a></li>
+                            <li><a href="#" class="p"><span type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Follow Us On Pinterest"></span></a></li>
+                            <li><a href="#" class="facebook" id="facebook"><span type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Follow Us On Facebook"></span></a></li>
+                            <li><a href="#" class="dribble"><span type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Follow Us On Dribbble"></span></a></li>
+                            <li><a href="#" class="rss"><span type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Follow Us On RSS"></span></a></li>
+                            <div class="clearfix"> </div>
+                        </ul>
+                        <script>
+                            $(function () {
+                              $('[data-toggle="tooltip"]').tooltip()
+                            })
+                        </script>
+                    </div>
+                </div>
+            </div>
