@@ -1,4 +1,4 @@
-# New Fellowship Mission School (Website:<a href="www.nfmschool.in">www.nfmschool.in</a>)
+# New Fellowship Mission School (Website:<a href="http://www.nfmschool.in">http://www.nfmschool.in</a>)
 <p>New Fellowship Mission School is based at Rewa, MP.</p>
 
 # Tech Stack:-
